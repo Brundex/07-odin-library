@@ -1,13 +1,6 @@
-document.getElementById("form").onsubmit = function(event) {
-    event.preventDefault();
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
-    const newBook = new Book(title, author, pages);
-    myLibrary.push(newBook);
-    console.table(myLibrary);
-}
+const bookList = document.querySelector("#library")
 
+let id = 0;
 let myLibrary = [];
 
 function Book(title, author, pages) {
@@ -16,20 +9,28 @@ function Book(title, author, pages) {
     this.pages = pages;
 }
 
-// function createNewBook() {
-//     const title = document.getElementById("title").value;
-//     const author = document.getElementById("author").value;
-//     const pages = document.getElementById("pages").value;
-//     const newBook = new Book(title, author, pages);
-//     myLibrary.push(newBook);
-// }
+document.getElementById("form").onsubmit = function(event) {
+    event.preventDefault();
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    const newBook = new Book(title, author, pages);
+    myLibrary.push(newBook);
+    console.table(myLibrary)
+    displayLibrary();
+}
 
-console.log(myLibrary);
+function displayLibrary() {
+    const newBook = document.createElement("div");
+    newBook.innerHTML = `${myLibrary[id].title} by ${myLibrary[id].author}`
+    newBook.className = 'new-book';
+    bookList.appendChild(newBook);
+    id++;
+}
 
 
-// function addBookToLibrary(_book) {
 
-// }
+
 
    
 
