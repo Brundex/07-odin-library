@@ -1,32 +1,36 @@
-const bookList = document.querySelector("#library")
+const books = [];
 
-let id = 0;
-let myLibrary = [];
+function renderBooks() {
+  const booksList = document.querySelector("#book-list");
+  booksList.innerHTML = "";
 
-function Book(title, author, pages) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
+  books.forEach((book, index) => {
+    const bookItem = document.createElement("li");
+    bookItem.className = "new-book"
+    bookItem.innerHTML = `
+      ${book.title} by ${book.author}
+      <button onclick="removeBook(${index})">Remove</button>
+    `;
+    booksList.appendChild(bookItem);
+  });
 }
 
-document.getElementById("form").onsubmit = function(event) {
-    event.preventDefault();
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
-    const newBook = new Book(title, author, pages);
-    myLibrary.push(newBook);
-    console.table(myLibrary)
-    displayLibrary();
+function removeBook(index) {
+  books.splice(index, 1);
+  renderBooks();
 }
 
-function displayLibrary() {
-    const newBook = document.createElement("div");
-    newBook.innerHTML = `${myLibrary[id].title} by ${myLibrary[id].author}`
-    newBook.className = 'new-book';
-    bookList.appendChild(newBook);
-    id++;
-}
+const form = document.querySelector("#form");
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  const title = form.querySelector("#title").value;
+  const author = form.querySelector("#author").value;
+  const pages = form.querySelector("#pages").value;
+  books.push({ title, author, pages });
+  renderBooks();
+});
+
+renderBooks();
 
 
 
