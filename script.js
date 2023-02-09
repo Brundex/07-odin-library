@@ -15,7 +15,7 @@ function renderBooks() {
       <button class="${book.read ? "read" : "not-read"}" onclick="toggleReadStatus(${index})">
         ${book.read ? "READ" : "NOT READ"}
       </button>
-      <button onclick="removeBook(${index})">Remove</button>
+      <button class="remove" onclick="removeBook(${index})">Remove</button>
     </div>
   `;
     booksList.appendChild(bookItem);
