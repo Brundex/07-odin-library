@@ -12,12 +12,14 @@
 <body>
     <div class="container">
         <form id="form">
-            <input type="text" id="title" placeholder="Title">
-            <input type="text" id="author" placeholder="Author">
-            <input type="number" id="pages" placeholder="N° of pages">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="number" id="pages" placeholder="N° of pages" required>
             <button type="submit" id="submit"></button>
         </form>
-        <div id="book-list"></div>
+        <div id="book-list">
+            <h1>MY LIBRARY</h1>
+        </div>
     </div>
         <script src="script.js"></script>
     
