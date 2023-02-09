@@ -6,11 +6,18 @@ function renderBooks() {
 
   books.forEach((book, index) => {
     const bookItem = document.createElement("li");
-    bookItem.className = "new-book"
+    bookItem.className = "new-book";
     bookItem.innerHTML = `
-      ${book.title} by ${book.author}
+    <h2>${book.title}</h2>
+    <p style="font-size: 16px;">by ${book.author}</p>
+    <p style="font-size: 16px;">${book.pages} pages</p>
+    <div style="display: flex;">
+      <button class="${book.read ? "read" : "not-read"}" onclick="toggleReadStatus(${index})">
+        ${book.read ? "READ" : "NOT READ"}
+      </button>
       <button onclick="removeBook(${index})">Remove</button>
-    `;
+    </div>
+  `;
     booksList.appendChild(bookItem);
   });
 }
@@ -29,6 +36,11 @@ form.addEventListener("submit", event => {
   books.push({ title, author, pages });
   renderBooks();
 });
+
+function toggleReadStatus(index) {
+    books[index].read = !books[index].read;
+    renderBooks();
+}
 
 renderBooks();
 
